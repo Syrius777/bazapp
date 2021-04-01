@@ -31,10 +31,12 @@ class Product extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['description'], 'string'],
-            [['date'], 'safe'],
-            [['user_id', 'category_id'], 'integer'],
-            [['product', 'image'], 'string', 'max' => 255],
+            [['product'], 'required'],
+            [['product', 'description', 'convert'], 'string'],
+            [['date'], 'date', 'format'=>'php:Y-m-d'],
+            [['date'], 'default', 'value' => date('Y-m-d')],
+            [['product'], 'string', 'max' => 255],
+
         ];
     }
 
